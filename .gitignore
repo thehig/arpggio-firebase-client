@@ -57,3 +57,15 @@ typings/
 # dotenv environment variables file
 .env
 
+*.sublime-workspace
+
+# API Keys
+firebase.config.js
+
+# Rekit
+
+target
+src/_tmp
+static
+dist
+build

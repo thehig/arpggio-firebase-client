@@ -1,0 +1,1 @@
+export const GAMES_TEST_ACTION = 'GAMES_TEST_ACTION';

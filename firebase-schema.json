@@ -1,0 +1,90 @@
+{
+  "games": {
+    "_gameId": {
+      "master": "_playerId",
+      "players": [ "_playerId", "_playerId", "_playerId" ],
+      "encounter": {
+        "encounterId": "_encounterId",
+        "NOTE": "When the encounter is instantiated, it should be copied here"
+      },
+      "viewport": {
+        "width": "number",
+        "height": "number",
+        "x": "number",
+        "y": "number"
+      },
+      "tokens": {
+        "players": {
+          "_playerId": {
+            "tokenId": "_tokenId",
+            "NOTE": "When the player is instantiated, it should be copied here"
+          }
+        },
+        "dynamic": {
+          "id": {
+            "tokenId": "_tokenId",
+            "NOTE": "When the token is instantiated, it should be copied here"
+          }
+        },
+        "static": {
+          "id": {
+            "tokenId": "_tokenId",
+            "NOTE": "When the token is instantiated, it should be copied here"
+          }
+        }
+      }
+    }
+  },
+  "players": {
+    "_playerId": {
+      "nick": "string",
+      "avatar": "url string",
+      "games": [ "_gameId", "_gameId" ]
+    }
+  },
+  "tokens": {
+    "_tokenId": {
+      "image": "url string",
+      "mask": "innerCircle | outerCircle | none",
+      "name": "string",
+      "size": {
+        "width": "number",
+        "height": "number"
+      }
+    }
+  },
+  "maps": {
+    "_mapId": {
+      "name": "string",
+      "thumb": "url string",
+      "image": "url string",
+      "description": "string",
+      "size": {
+        "width" : "number",
+        "height" : "number"
+      },
+      "grid": {
+        "offsetX": "number",
+        "offsetY": "number",
+        "scale": "number",
+        "type": "square | hex | none"
+      }
+    }
+  },
+  "encounters": {
+    "_encounterId": {
+      "mapId": "_mapId",
+      "tokens": {
+        "id": {
+          "token": "_tokenId",
+          "position": {
+            "x": "number",
+            "y": "number",
+            "z": "number"
+          },
+          "visibleToPlayers": "boolean"
+        }
+      }
+    }
+  }
+}
