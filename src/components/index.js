@@ -5,6 +5,8 @@ import AppShell from './AppShell';
 import Logged from './Logged';
 import AuthenticatedComponent from './AuthenticatedComponent';
 import LoginButton from './LoginButton';
+import ErrorComponent from './ErrorComponent';
+import AppErrorDisplay from './AppErrorDisplay';
 
 export {
   SimpleNav,
@@ -14,4 +16,6 @@ export {
   Logged,
   AuthenticatedComponent,
   LoginButton,
+  ErrorComponent,
+  AppErrorDisplay,
 };

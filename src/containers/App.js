@@ -9,18 +9,21 @@ import { browserHistory } from 'react-router';
 import * as importActions from '../features/common/redux/actions';
 
 import routeConfig from '../common/routeConfig';
-import { AppDrawer, AppShell } from '../components';
+import { AppDrawer, AppShell, AppErrorDisplay } from '../components';
 import AppBar from './AppBar';
+
+import { globalSelectors } from '../common/rootReducer';
 
 class App extends Component {
   static propTypes = {
     common: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
     children: PropTypes.node.isRequired,
+    errors: PropTypes.array.isRequired,
   };
 
   render() {
-    const { common, actions } = this.props;
+    const { common, actions, errors } = this.props;
 
     const navigate = (route) => {
       browserHistory.push(route);
@@ -45,6 +48,10 @@ class App extends Component {
           <AppShell>
             { this.props.children }
           </AppShell>
+
+          <AppErrorDisplay
+            errors={errors}
+          />
         </div>
       </MuiThemeProvider>
     );
@@ -56,6 +63,7 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     common: state.get('common'),
+    errors: globalSelectors.errors(state),
   };
 }
 

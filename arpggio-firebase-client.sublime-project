@@ -3,7 +3,10 @@
   [
     {
       "path": ".",
-            "folder_exclude_patterns": ["node_modules", "src", "test"]
+            "folder_exclude_patterns": [
+              "node_modules", "src", "test",
+              ".nyc_output", "build"
+            ]
     },
         {
             "path": "src/",

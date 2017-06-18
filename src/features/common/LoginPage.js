@@ -54,10 +54,7 @@ export class LoginPage extends Component {
   }
 
   onLoginClick() {
-    this.props.firebase.login({
-      provider: 'google',
-      type: 'popup'
-    });
+    this.props.actions.firebaseLogin(this.props.firebase);
   }
 
   onLoginSubmit(submitForm) {

@@ -55,17 +55,17 @@ export function reducer(state, action) {
         .set('${CAMEL_ACTION_NAME}Error', null)
       ;
 
-    case ${FAILURE_ACTION_TYPE}:    
+    case ${FAILURE_ACTION_TYPE}:
       return state
         .set('${CAMEL_ACTION_NAME}Pending', false)
-        .set('${CAMEL_ACTION_NAME}Error', Immutable.fromJS(action.data.error || {})
+        .set('${CAMEL_ACTION_NAME}Error', Immutable.fromJS(action.data.error || {}))
       ;
 
     case ${DISMISS_ERROR_ACTION_TYPE}:
       return state
         .set('${CAMEL_ACTION_NAME}Error', null)
       ;
-      
+
     default:
       return state;
   }

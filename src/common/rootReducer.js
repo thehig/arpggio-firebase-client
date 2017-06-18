@@ -42,5 +42,22 @@ export const globalSelectors = {
     const displayName = auth.displayName;
     if (!displayName) return 'Logging In...';
     return displayName;
-  }
+  },
+  errors: (state) => {
+    const errorsList = [];
+
+    // if (process.env.NODE_ENV === 'dev') {
+    //   errorsList.push(new Error('Development Error'));
+    // }
+
+    const firebaseAuthError = state.getIn(['firebase', 'authError']);
+    if (firebaseAuthError !== null) {
+      errorsList.push({
+        ...firebaseAuthError,
+        source: 'Firebase Auth',
+      });
+    }
+
+    return errorsList;
+  },
 };

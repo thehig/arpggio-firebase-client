@@ -2,11 +2,15 @@ import initialState from './initialState';
 import { reducer as commonTestAction } from './commonTestAction';
 import { reducer as setDrawer } from './setDrawer';
 import { reducer as toggleDrawer } from './toggleDrawer';
+import { reducer as firebaseLogin } from './firebaseLogin';
+import { reducer as firebaseLogout } from './firebaseLogout';
 
 const reducers = [
   commonTestAction,
   setDrawer,
   toggleDrawer,
+  firebaseLogin,
+  firebaseLogout,
 ];
 
 export default function reducer(state = initialState, action) {

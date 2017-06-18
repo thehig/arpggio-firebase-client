@@ -4,19 +4,25 @@ import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
+import { bindActionCreators } from 'redux';
 
 import { AppBar as Bar } from 'material-ui';
 // import Avatar from 'material-ui/Avatar';
 
 import { LoginButton, Logged } from '../components/';
 import { globalSelectors } from '../common/rootReducer';
+import { firebaseLogout } from '../features/common/redux/actions'
+
 
 @firebaseConnect()
 @connect(
   state => ({
     logged: globalSelectors.logged(state),
     username: globalSelectors.username(state),
-  })
+  }),
+  dispatch => ({
+    actions: bindActionCreators({ firebaseLogout }, dispatch),
+  }),
 )
 export default class AppBar extends Component {
   static propTypes = {
@@ -27,7 +33,9 @@ export default class AppBar extends Component {
     logged: PropTypes.bool.isRequired,
     username: PropTypes.string,
     onMenuClick: PropTypes.func,
-    // profile: PropTypes.object,
+    actions: PropTypes.shape({
+      firebaseLogout: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
   static defaultProps = {
@@ -48,7 +56,7 @@ export default class AppBar extends Component {
   }
 
   logout() {
-    this.props.firebase.logout();
+    this.props.actions.firebaseLogout(this.props.firebase);
   }
 
   createRightElement() {
