@@ -51,7 +51,7 @@ export const globalSelectors = {
     // }
 
     const firebaseAuthError = state.getIn(['firebase', 'authError']);
-    if (firebaseAuthError !== null) {
+    if (firebaseAuthError) {
       errorsList.push({
         ...firebaseAuthError,
         source: 'Firebase Auth',

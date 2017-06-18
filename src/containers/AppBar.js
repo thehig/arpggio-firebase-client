@@ -46,9 +46,19 @@ export default class AppBar extends Component {
   constructor(props) {
     super(props);
 
+    this.help = ::this.help;
+    this.refresh = ::this.refresh;
     this.login = ::this.login;
     this.logout = ::this.logout;
     this.createRightElement = ::this.createRightElement;
+  }
+
+  help() {
+    browserHistory.push('/about');
+  }
+
+  refresh() {
+    window.location.reload(false);
   }
 
   login() {
@@ -60,12 +70,28 @@ export default class AppBar extends Component {
   }
 
   createRightElement() {
-    const { logged, username } = this.props;
+    const {
+      logged,
+      username
+    } = this.props;
+
+    const {
+      help,
+      login,
+      logout,
+      refresh,
+    } = this;
+
     console.log('Hello', username);
 
     return logged
-      ? <Logged onLogoutClick={this.logout} />
-      : <LoginButton onTouchTap={this.login} />
+      ? (
+        <Logged
+          onLogoutClick={logout}
+          onHelpClick={help}
+          onRefreshClick={refresh}
+        />
+      ) : <LoginButton onTouchTap={login} />
     ;
   }
 
