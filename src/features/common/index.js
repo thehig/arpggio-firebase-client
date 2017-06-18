@@ -1,5 +1,7 @@
-import Login from './Login';
+import LoginForm from './LoginForm';
+import LoginPage from './LoginPage';
 
 export {
-  Login,
+  LoginForm,
+  LoginPage,
 };

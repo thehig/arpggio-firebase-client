@@ -1,16 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import { Login } from 'src/components';
+import { LoginButton } from 'src/components';
 
-describe('components/Login', () => {
+describe('components/LoginButton', () => {
   it('renders node with correct class name', () => {
     const renderedComponent = shallow(
-      <Login />
+      <LoginButton />
     );
 
     expect(
-      renderedComponent.find('.component-login').node
+      renderedComponent.find('.component-login-button').node
     ).to.exist;
   });
 });

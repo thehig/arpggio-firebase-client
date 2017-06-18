@@ -8,7 +8,7 @@ import { firebaseConnect } from 'react-redux-firebase';
 import { AppBar as Bar } from 'material-ui';
 // import Avatar from 'material-ui/Avatar';
 
-import { Login, Logged } from '../components/';
+import { LoginButton, Logged } from '../components/';
 import { globalSelectors } from '../common/rootReducer';
 
 @firebaseConnect()
@@ -57,7 +57,7 @@ export default class AppBar extends Component {
 
     return logged
       ? <Logged onLogoutClick={this.logout} />
-      : <Login onTouchTap={this.login} />
+      : <LoginButton onTouchTap={this.login} />
     ;
   }
 

@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux-immutable';
-import { firebaseStateReducer as firebaseReducer } from 'react-redux-firebase';
 
+import { firebaseStateReducer as firebaseReducer } from 'react-redux-firebase';
+import { reducer as formReducer } from 'redux-form';
 import routerReducer from './immutableRouterReducer';
+
 import homeReducer from '../features/home/redux/reducer';
 import commonReducer from '../features/common/redux/reducer';
 import gamesReducer from '../features/games/redux/reducer';
@@ -10,7 +12,9 @@ import fromCommonSelectors from '../features/common/redux/selectors';
 
 const rootReducer = combineReducers({
   firebase: firebaseReducer,
+  form: formReducer,
   routing: routerReducer,
+
   home: homeReducer,
   common: commonReducer,
   games: gamesReducer,

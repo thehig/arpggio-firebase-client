@@ -69,3 +69,4 @@ src/_tmp
 static
 dist
 build
+.tmp

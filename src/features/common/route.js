@@ -1,8 +1,8 @@
 import {
-  Login
+  LoginPage,
 } from './index';
 
-import { globalSelectors } from '../../common/rootReducer';
+// import { globalSelectors } from '../../common/rootReducer';
 
 const redirectIfAuthed = (nextState, replace, callback) => {
   // const isLoggedIn = globalSelectors.logged(nextState);
@@ -18,6 +18,6 @@ export default {
   path: '',
   name: 'Root',
   childRoutes: [
-    { path: 'login', name: 'Login', component: Login, onEnter: redirectIfAuthed },
+    { path: 'login', name: 'Login', component: LoginPage, onEnter: redirectIfAuthed },
   ],
 };

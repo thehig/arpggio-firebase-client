@@ -12,9 +12,10 @@ import * as actions from './redux/actions';
 
 
 import { globalSelectors } from '../../common/rootReducer';
+import { LoginForm } from './';
 
 @firebaseConnect()
-export class Login extends Component {
+export class LoginPage extends Component {
   static propTypes = {
     common: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
@@ -30,6 +31,7 @@ export class Login extends Component {
   constructor(props) {
     super(props);
     this.onLoginClick = ::this.onLoginClick;
+    this.onLoginSubmit = ::this.onLoginSubmit;
     this.redirectIfLoggedIn = ::this.redirectIfLoggedIn;
   }
 
@@ -58,6 +60,11 @@ export class Login extends Component {
     });
   }
 
+  onLoginSubmit(submitForm) {
+    // SubmitForm can be an Immutable map, or a basic JSON obj
+    console.log('onLoginSubmit', submitForm);
+  }
+
   redirectIfLoggedIn({ logged, next }) {
     if (logged) {
       browserHistory.replace(next || '/home');
@@ -68,7 +75,8 @@ export class Login extends Component {
     return (
       <div className="common-login">
         Page Content: common/Login
-        <FlatButton onTouchTap={this.onLoginClick} label="Login" />
+        <FlatButton onTouchTap={this.onLoginClick} label="Login With Google" />
+        <LoginForm onSubmit={this.onLoginSubmit} />
       </div>
     );
   }
@@ -105,4 +113,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login);
+)(LoginPage);
