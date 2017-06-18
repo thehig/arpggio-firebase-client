@@ -1,20 +1,20 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import { DefaultPage } from 'features/home/DefaultPage';
+import { HomePage } from 'features/common/HomePage';
 
-describe('home/DefaultPage', () => {
+describe('common/HomePage', () => {
   it('renders node with correct class name', () => {
     const pageProps = {
-      home: {},
+      common: {},
       actions: {},
     };
     const renderedComponent = shallow(
-      <DefaultPage {...pageProps} />
+      <HomePage {...pageProps} />
     );
 
     expect(
-      renderedComponent.find('.home-default-page').node
+      renderedComponent.find('.common-home-page').node
     ).to.exist;
   });
 });

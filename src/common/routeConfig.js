@@ -1,7 +1,6 @@
 import App from '../containers/App';
 
 import { PageNotFound } from '../components';
-import homeRoute from '../features/home/route';
 import commonRoute from '../features/common/route';
 import gamesRoute from '../features/games/route';
 
@@ -24,7 +23,6 @@ const routes = [{
   component: App,
   childRoutes: [
     { onEnter: rootRouteRedirect, isIndex: true },
-    homeRoute,
     commonRoute,
     gamesRoute,
     { path: '*', name: 'Page not found', component: PageNotFound },

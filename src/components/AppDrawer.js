@@ -35,6 +35,7 @@ export default class AppDrawer extends PureComponent {
   constructor(props) {
     super(props);
     this.renderLinks = ::this.renderLinks;
+    this.excludeRoutes = ::this.excludeRoutes;
   }
 
   getPath = (item, basePath) => {
@@ -50,20 +51,22 @@ export default class AppDrawer extends PureComponent {
   }
 
   excludeRoutes = (route) => {
-    // Remove the root path ('' or '/')
-    if (/^\/?$/.test(route.path)) return false;
-    // Remove any routes in the common feature
-    if (/^common/.test(route.path)) return false;
     // Remove any routes that start with *
     if (/^\*/.test(route.path)) return false;
+
+    // If not removed by any other rule, show
     return true;
   }
+
+  // Sort the routes by the length of their paths
+  sortRoutes = (a, b) => a.path.length > b.path.length;
 
   handleClose = () => this.props.setDrawer(false);
 
   renderLinks(items, basePath = '') {
     return items
       .filter(this.excludeRoutes)
+      .sort(this.sortRoutes)
       .map((route) => {
         const fullPath = this.getPath(route, basePath);
         const listProps = {

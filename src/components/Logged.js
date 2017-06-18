@@ -9,7 +9,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 class Logged extends PureComponent {
   static propTypes = {
     onLogoutClick: PropTypes.func.isRequired,
-    onHelpClick: PropTypes.func.isRequired,
+    onAboutClick: PropTypes.func.isRequired,
     onRefreshClick: PropTypes.func.isRequired,
   };
 
@@ -20,7 +20,7 @@ class Logged extends PureComponent {
     const {
       onLogoutClick,
       onRefreshClick,
-      onHelpClick,
+      onAboutClick,
     } = this.props;
 
     return (
@@ -32,7 +32,7 @@ class Logged extends PureComponent {
         anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
       >
         <MenuItem primaryText="Refresh" onTouchTap={onRefreshClick} />
-        <MenuItem primaryText="Help" onTouchTap={onHelpClick} />
+        <MenuItem primaryText="About" onTouchTap={onAboutClick} />
         <MenuItem primaryText="Sign out" onTouchTap={onLogoutClick} />
       </IconMenu>
     );
