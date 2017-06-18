@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Immutable from 'immutable';
+
 import * as actions from './redux/actions';
 
 export class ${PAGE_NAME} extends Component {
@@ -22,7 +24,7 @@ export class ${PAGE_NAME} extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
-    ${CAMEL_FEATURE_NAME}: state.${CAMEL_FEATURE_NAME},
+    ${CAMEL_FEATURE_NAME}: state.get('${CAMEL_FEATURE_NAME}'),
   };
 }
 

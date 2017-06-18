@@ -89,7 +89,7 @@ function nextRoute(ownProps) {
 /* istanbul ignore next */
 function mapStateToProps(state, ownProps) {
   return {
-    common: state.common,
+    common: state.get('common'),
     logged: globalSelectors.logged(state),
     next: nextRoute(ownProps),
   };

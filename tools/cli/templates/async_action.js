@@ -1,3 +1,4 @@
+import Immutable from 'immutable';
 import {
   ${BEGIN_ACTION_TYPE},
   ${SUCCESS_ACTION_TYPE},
@@ -43,32 +44,28 @@ export function dismiss${PASCAL_ACTION_NAME}Error() {
 export function reducer(state, action) {
   switch (action.type) {
     case ${BEGIN_ACTION_TYPE}:
-      return {
-        ...state,
-        ${CAMEL_ACTION_NAME}Pending: true,
-        ${CAMEL_ACTION_NAME}Error: null,
-      };
+      return state
+        .set('${CAMEL_ACTION_NAME}Pending', true)
+        .set('${CAMEL_ACTION_NAME}Error', null)
+      ;
 
     case ${SUCCESS_ACTION_TYPE}:
-      return {
-        ...state,
-        ${CAMEL_ACTION_NAME}Pending: false,
-        ${CAMEL_ACTION_NAME}Error: null,
-      };
+      return state
+        .set('${CAMEL_ACTION_NAME}Pending', false)
+        .set('${CAMEL_ACTION_NAME}Error', null)
+      ;
 
-    case ${FAILURE_ACTION_TYPE}:
-      return {
-        ...state,
-        ${CAMEL_ACTION_NAME}Pending: false,
-        ${CAMEL_ACTION_NAME}Error: action.data.error,
-      };
+    case ${FAILURE_ACTION_TYPE}:    
+      return state
+        .set('${CAMEL_ACTION_NAME}Pending', false)
+        .set('${CAMEL_ACTION_NAME}Error', Immutable.fromJS(action.data.error || {})
+      ;
 
     case ${DISMISS_ERROR_ACTION_TYPE}:
-      return {
-        ...state,
-        ${CAMEL_ACTION_NAME}Error: null,
-      };
-
+      return state
+        .set('${CAMEL_ACTION_NAME}Error', null)
+      ;
+      
     default:
       return state;
   }

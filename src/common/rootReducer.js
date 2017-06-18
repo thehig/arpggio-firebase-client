@@ -1,14 +1,15 @@
-import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
-import { firebaseStateReducer as firebase } from 'react-redux-firebase';
+import { combineReducers } from 'redux-immutable';
+import { firebaseStateReducer as firebaseReducer } from 'react-redux-firebase';
+
+import routerReducer from './immutableRouterReducer';
 import homeReducer from '../features/home/redux/reducer';
 import commonReducer from '../features/common/redux/reducer';
-
-import fromCommonSelectors from '../features/common/redux/selectors';
 import gamesReducer from '../features/games/redux/reducer';
 
+import fromCommonSelectors from '../features/common/redux/selectors';
+
 const rootReducer = combineReducers({
-  firebase,     // Note: This is a firebase object
+  firebase: firebaseReducer,
   routing: routerReducer,
   home: homeReducer,
   common: commonReducer,
@@ -19,7 +20,7 @@ export default rootReducer;
 
 // Take all of the selectors in fromCommonSelectors and bind them to the assigned element of state
 export const commonSelectors = Object.keys(fromCommonSelectors).reduce((previous, current) => {
-  previous[current] = state => fromCommonSelectors[current](state.common); // eslint-disable-line
+  previous[current] = state => fromCommonSelectors[current](state.get('common')); // eslint-disable-line
   return previous;
 }, {});
 
@@ -28,17 +29,14 @@ export const commonSelectors = Object.keys(fromCommonSelectors).reduce((previous
 export const globalSelectors = {
   // !(No Auth)
   logged: (state) => {
-    const authFail = !state ||
-                     !state.firebase ||
-                     !state.firebase.get('auth') ||
-                     state.firebase.get('auth') === null;
-    // console.log('AuthFail', authFail);
+    const authFail = state.getIn(['firebase', 'auth']) === null;
     return !authFail;
   },
   username: (state) => {
-    const auth = state.firebase.get('auth');
+    const auth = state.getIn(['firebase', 'auth']);
     if (auth == null) return undefined;
-    if (!auth.displayName) return 'Logging In...';
-    return auth.displayName;
+    const displayName = auth.displayName;
+    if (!displayName) return 'Logging In...';
+    return displayName;
   }
 };

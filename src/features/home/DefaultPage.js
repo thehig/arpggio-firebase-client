@@ -30,7 +30,7 @@ export class DefaultPage extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
-    home: state.home,
+    home: state.get('home'),
     drawerOpen: commonSelectors.getDrawerState(state),
   };
 }

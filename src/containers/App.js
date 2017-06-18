@@ -35,7 +35,7 @@ class App extends Component {
           />
 
           <AppDrawer
-            open={common.drawerOpen}
+            open={common.get('drawerOpen')}
             setDrawer={actions.setDrawer}
             routes={routeConfig}
             onRequestChange={actions.toggleDrawer}
@@ -55,7 +55,7 @@ class App extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
-    common: state.common,
+    common: state.get('common'),
   };
 }
 

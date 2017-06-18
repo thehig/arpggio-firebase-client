@@ -22,7 +22,7 @@ export class DefaultPage extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
-    games: state.games,
+    games: state.get('games'),
   };
 }
 

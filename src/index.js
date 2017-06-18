@@ -9,7 +9,9 @@ import configStore from './common/configStore';
 import Root from './containers/Root';
 
 const store = configStore();
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState: state => state.get('routing').toJS(),
+});
 
 const root = document.createElement('div');
 document.body.appendChild(root);

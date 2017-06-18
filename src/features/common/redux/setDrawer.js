@@ -14,16 +14,12 @@ export function setDrawer(isOpen) {
 export function reducer(state, action) {
   switch (action.type) {
     case SET_DRAWER:
-      return {
-        ...state,
-        drawerOpen: action.payload.value,
-      };
-
+      return state.set('drawerOpen', action.payload.value);
     default:
       return state;
   }
 }
 
 export function getDrawerState(state) {
-  return state.drawerOpen;
+  return state.get('drawerOpen');
 }

@@ -11,11 +11,7 @@ export function toggleDrawer() {
 export function reducer(state, action) {
   switch (action.type) {
     case TOGGLE_DRAWER:
-      return {
-        ...state,
-        drawerOpen: !state.drawerOpen,
-      };
-
+      return state.set('drawerOpen', !(state.get('drawerOpen')));
     default:
       return state;
   }
